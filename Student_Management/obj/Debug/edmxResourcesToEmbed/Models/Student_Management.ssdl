@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LEARNINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Hacker_Batch">
+    <Key>
+      <PropertyRef Name="Batch_ID" />
+    </Key>
+    <Property Name="Batch_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Year" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hacker_Course">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hacker_Registration">
+    <Key>
+      <PropertyRef Name="Registration_ID" />
+    </Key>
+    <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Batch_ID" Type="int" />
+    <Property Name="Course_ID" Type="int" />
+    <Property Name="Tel" Type="int" />
+  </EntityType>
+  <EntityType Name="Hacker_User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Hacker_Registration_Hacker_Batch">
+    <End Role="Hacker_Batch" Type="Self.Hacker_Batch" Multiplicity="0..1" />
+    <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hacker_Batch">
+        <PropertyRef Name="Batch_ID" />
+      </Principal>
+      <Dependent Role="Hacker_Registration">
+        <PropertyRef Name="Batch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hacker_Registration_Hacker_Course">
+    <End Role="Hacker_Course" Type="Self.Hacker_Course" Multiplicity="0..1" />
+    <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hacker_Course">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Hacker_Registration">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LEARNINGModelStoreContainer">
+    <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">
+      <End Role="Hacker_Batch" EntitySet="Hacker_Batch" />
+      <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hacker_Registration_Hacker_Course" Association="Self.FK_Hacker_Registration_Hacker_Course">
+      <End Role="Hacker_Course" EntitySet="Hacker_Course" />
+      <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

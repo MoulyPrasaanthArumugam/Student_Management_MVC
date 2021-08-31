@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LEARNINGModelStoreContainer" CdmEntityContainer="LEARNINGEntities">
+    <EntitySetMapping Name="Hacker_Batch">
+      <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Batch">
+        <MappingFragment StoreEntitySet="Hacker_Batch">
+          <ScalarProperty Name="Batch_ID" ColumnName="Batch_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hacker_Course">
+      <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Course">
+        <MappingFragment StoreEntitySet="Hacker_Course">
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hacker_Registration">
+      <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Registration">
+        <MappingFragment StoreEntitySet="Hacker_Registration">
+          <ScalarProperty Name="Registration_ID" ColumnName="Registration_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Nic" ColumnName="Nic" />
+          <ScalarProperty Name="Batch_ID" ColumnName="Batch_ID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hacker_User">
+      <EntityTypeMapping TypeName="LEARNINGModel.Hacker_User">
+        <MappingFragment StoreEntitySet="Hacker_User">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

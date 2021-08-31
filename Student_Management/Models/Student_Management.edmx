@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LEARNINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Hacker_Batch">
+          <Key>
+            <PropertyRef Name="Batch_ID" />
+          </Key>
+          <Property Name="Batch_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hacker_Course">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hacker_Registration">
+          <Key>
+            <PropertyRef Name="Registration_ID" />
+          </Key>
+          <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Batch_ID" Type="int" />
+          <Property Name="Course_ID" Type="int" />
+          <Property Name="Tel" Type="int" />
+        </EntityType>
+        <EntityType Name="Hacker_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Hacker_Registration_Hacker_Batch">
+          <End Role="Hacker_Batch" Type="Self.Hacker_Batch" Multiplicity="0..1" />
+          <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hacker_Batch">
+              <PropertyRef Name="Batch_ID" />
+            </Principal>
+            <Dependent Role="Hacker_Registration">
+              <PropertyRef Name="Batch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hacker_Registration_Hacker_Course">
+          <End Role="Hacker_Course" Type="Self.Hacker_Course" Multiplicity="0..1" />
+          <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hacker_Course">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Hacker_Registration">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LEARNINGModelStoreContainer">
+          <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">
+            <End Role="Hacker_Batch" EntitySet="Hacker_Batch" />
+            <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hacker_Registration_Hacker_Course" Association="Self.FK_Hacker_Registration_Hacker_Course">
+            <End Role="Hacker_Course" EntitySet="Hacker_Course" />
+            <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LEARNINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Hacker_Batch">
+          <Key>
+            <PropertyRef Name="Batch_ID" />
+          </Key>
+          <Property Name="Batch_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hacker_Registration" Relationship="Self.FK_Hacker_Registration_Hacker_Batch" FromRole="Hacker_Batch" ToRole="Hacker_Registration" />
+        </EntityType>
+        <EntityType Name="Hacker_Course">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hacker_Registration" Relationship="Self.FK_Hacker_Registration_Hacker_Course" FromRole="Hacker_Course" ToRole="Hacker_Registration" />
+        </EntityType>
+        <EntityType Name="Hacker_Registration">
+          <Key>
+            <PropertyRef Name="Registration_ID" />
+          </Key>
+          <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Batch_ID" Type="Int32" />
+          <Property Name="Course_ID" Type="Int32" />
+          <Property Name="Tel" Type="Int32" />
+          <NavigationProperty Name="Hacker_Batch" Relationship="Self.FK_Hacker_Registration_Hacker_Batch" FromRole="Hacker_Registration" ToRole="Hacker_Batch" />
+          <NavigationProperty Name="Hacker_Course" Relationship="Self.FK_Hacker_Registration_Hacker_Course" FromRole="Hacker_Registration" ToRole="Hacker_Course" />
+        </EntityType>
+        <EntityType Name="Hacker_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Hacker_Registration_Hacker_Batch">
+          <End Role="Hacker_Batch" Type="Self.Hacker_Batch" Multiplicity="0..1" />
+          <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hacker_Batch">
+              <PropertyRef Name="Batch_ID" />
+            </Principal>
+            <Dependent Role="Hacker_Registration">
+              <PropertyRef Name="Batch_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hacker_Registration_Hacker_Course">
+          <End Role="Hacker_Course" Type="Self.Hacker_Course" Multiplicity="0..1" />
+          <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hacker_Course">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="Hacker_Registration">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LEARNINGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" />
+          <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" />
+          <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" />
+          <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" />
+          <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">
+            <End Role="Hacker_Batch" EntitySet="Hacker_Batch" />
+            <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hacker_Registration_Hacker_Course" Association="Self.FK_Hacker_Registration_Hacker_Course">
+            <End Role="Hacker_Course" EntitySet="Hacker_Course" />
+            <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LEARNINGModelStoreContainer" CdmEntityContainer="LEARNINGEntities">
+          <EntitySetMapping Name="Hacker_Batch">
+            <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Batch">
+              <MappingFragment StoreEntitySet="Hacker_Batch">
+                <ScalarProperty Name="Batch_ID" ColumnName="Batch_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hacker_Course">
+            <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Course">
+              <MappingFragment StoreEntitySet="Hacker_Course">
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hacker_Registration">
+            <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Registration">
+              <MappingFragment StoreEntitySet="Hacker_Registration">
+                <ScalarProperty Name="Registration_ID" ColumnName="Registration_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Nic" ColumnName="Nic" />
+                <ScalarProperty Name="Batch_ID" ColumnName="Batch_ID" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hacker_User">
+            <EntityTypeMapping TypeName="LEARNINGModel.Hacker_User">
+              <MappingFragment StoreEntitySet="Hacker_User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

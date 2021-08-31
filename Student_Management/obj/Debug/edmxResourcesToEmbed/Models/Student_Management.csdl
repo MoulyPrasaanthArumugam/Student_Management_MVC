@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LEARNINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Hacker_Batch">
+    <Key>
+      <PropertyRef Name="Batch_ID" />
+    </Key>
+    <Property Name="Batch_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hacker_Registration" Relationship="Self.FK_Hacker_Registration_Hacker_Batch" FromRole="Hacker_Batch" ToRole="Hacker_Registration" />
+  </EntityType>
+  <EntityType Name="Hacker_Course">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hacker_Registration" Relationship="Self.FK_Hacker_Registration_Hacker_Course" FromRole="Hacker_Course" ToRole="Hacker_Registration" />
+  </EntityType>
+  <EntityType Name="Hacker_Registration">
+    <Key>
+      <PropertyRef Name="Registration_ID" />
+    </Key>
+    <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Batch_ID" Type="Int32" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="Tel" Type="Int32" />
+    <NavigationProperty Name="Hacker_Batch" Relationship="Self.FK_Hacker_Registration_Hacker_Batch" FromRole="Hacker_Registration" ToRole="Hacker_Batch" />
+    <NavigationProperty Name="Hacker_Course" Relationship="Self.FK_Hacker_Registration_Hacker_Course" FromRole="Hacker_Registration" ToRole="Hacker_Course" />
+  </EntityType>
+  <EntityType Name="Hacker_User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Hacker_Registration_Hacker_Batch">
+    <End Role="Hacker_Batch" Type="Self.Hacker_Batch" Multiplicity="0..1" />
+    <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hacker_Batch">
+        <PropertyRef Name="Batch_ID" />
+      </Principal>
+      <Dependent Role="Hacker_Registration">
+        <PropertyRef Name="Batch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hacker_Registration_Hacker_Course">
+    <End Role="Hacker_Course" Type="Self.Hacker_Course" Multiplicity="0..1" />
+    <End Role="Hacker_Registration" Type="Self.Hacker_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hacker_Course">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Hacker_Registration">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LEARNINGEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" />
+    <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" />
+    <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" />
+    <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" />
+    <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">
+      <End Role="Hacker_Batch" EntitySet="Hacker_Batch" />
+      <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hacker_Registration_Hacker_Course" Association="Self.FK_Hacker_Registration_Hacker_Course">
+      <End Role="Hacker_Course" EntitySet="Hacker_Course" />
+      <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
