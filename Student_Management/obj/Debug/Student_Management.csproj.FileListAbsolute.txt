@@ -101,8 +101,8 @@ C:\MOULY\Workspace\GIT\Student Management\Student_Management\bin\Microsoft.Owin.
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\bin\Microsoft.Owin.Security.OAuth.xml
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.csprojAssemblyReference.cache
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.csproj.CoreCompileInputs.cache
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.csproj.CopyComplete
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.dll
 C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.pdb
+C:\MOULY\Workspace\GIT\Student Management\Student_Management\obj\Debug\Student_Management.csprojAssemblyReference.cache

@@ -29,5 +29,6 @@ namespace Student_Management.Models
         public virtual DbSet<Hacker_Course> Hacker_Course { get; set; }
         public virtual DbSet<Hacker_Registration> Hacker_Registration { get; set; }
         public virtual DbSet<Hacker_User> Hacker_User { get; set; }
+        public virtual DbSet<Hacker_Document> Hacker_Document { get; set; }
     }
 }

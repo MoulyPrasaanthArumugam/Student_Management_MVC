@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="LEARNINGModel.Hacker_User" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="LEARNINGModel.FK_Hacker_Registration_Hacker_Batch" ManuallyRouted="false" />
         <AssociationConnector Association="LEARNINGModel.FK_Hacker_Registration_Hacker_Course" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LEARNINGModel.Hacker_Document" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

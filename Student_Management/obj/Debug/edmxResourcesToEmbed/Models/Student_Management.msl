@@ -43,5 +43,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Hacker_Document">
+      <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Document">
+        <MappingFragment StoreEntitySet="Hacker_Document">
+          <ScalarProperty Name="Document_Name" ColumnName="Document Name" />
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Document_ID" ColumnName="Document_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -16,6 +16,14 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Duration" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Hacker_Document">
+    <Key>
+      <PropertyRef Name="Document_ID" />
+    </Key>
+    <Property Name="Document_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Document" Type="varchar(max)" />
+    <Property Name="Document Name" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Hacker_Registration">
     <Key>
       <PropertyRef Name="Registration_ID" />
@@ -65,6 +73,7 @@
   <EntityContainer Name="LEARNINGModelStoreContainer">
     <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hacker_Document" EntityType="Self.Hacker_Document" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">

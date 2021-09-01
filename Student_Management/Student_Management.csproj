@@ -170,6 +170,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalcController.cs" />
+    <Compile Include="Controllers\CourseMaterialController.cs" />
     <Compile Include="Controllers\Hacker_BatchController.cs" />
     <Compile Include="Controllers\Hacker_CourseController.cs" />
     <Compile Include="Controllers\Hacker_RegistrationController.cs" />
@@ -181,10 +183,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Calc.cs" />
     <Compile Include="Models\Hacker_Batch.cs">
       <DependentUpon>Student_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hacker_Course.cs">
+      <DependentUpon>Student_Management.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hacker_Document.cs">
       <DependentUpon>Student_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hacker_Registration.cs">
@@ -307,9 +313,11 @@
     <Content Include="Views\Hacker_User\Edit.cshtml" />
     <Content Include="Views\Hacker_User\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Calc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CourseMaterial\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

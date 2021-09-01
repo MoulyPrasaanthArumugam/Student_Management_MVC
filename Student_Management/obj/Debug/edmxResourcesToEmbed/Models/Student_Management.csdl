@@ -79,5 +79,14 @@
       <End Role="Hacker_Course" EntitySet="Hacker_Course" />
       <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
     </AssociationSet>
+    <EntitySet Name="Hacker_Document" EntityType="LEARNINGModel.Hacker_Document" />
   </EntityContainer>
+  <EntityType Name="Hacker_Document">
+    <Key>
+      <PropertyRef Name="Document_ID" />
+    </Key>
+    <Property Name="Document_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Document" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Document_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

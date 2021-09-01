@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LEARNINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LEARNINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Hacker_Batch">
           <Key>
             <PropertyRef Name="Batch_ID" />
@@ -20,6 +20,14 @@
           <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hacker_Document">
+          <Key>
+            <PropertyRef Name="Document_ID" />
+          </Key>
+          <Property Name="Document_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document" Type="varchar(max)" />
+          <Property Name="Document Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Hacker_Registration">
           <Key>
@@ -70,6 +78,7 @@
         <EntityContainer Name="LEARNINGModelStoreContainer">
           <EntitySet Name="Hacker_Batch" EntityType="Self.Hacker_Batch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hacker_Course" EntityType="Self.Hacker_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hacker_Document" EntityType="Self.Hacker_Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hacker_Registration" EntityType="Self.Hacker_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hacker_User" EntityType="Self.Hacker_User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Hacker_Registration_Hacker_Batch" Association="Self.FK_Hacker_Registration_Hacker_Batch">
@@ -81,8 +90,7 @@
             <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LEARNINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -165,7 +173,16 @@
             <End Role="Hacker_Course" EntitySet="Hacker_Course" />
             <End Role="Hacker_Registration" EntitySet="Hacker_Registration" />
           </AssociationSet>
+          <EntitySet Name="Hacker_Document" EntityType="LEARNINGModel.Hacker_Document" />
         </EntityContainer>
+        <EntityType Name="Hacker_Document">
+          <Key>
+            <PropertyRef Name="Document_ID" />
+          </Key>
+          <Property Name="Document_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Document_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -211,6 +228,15 @@
                 <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
                 <ScalarProperty Name="User_Name" ColumnName="User_Name" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hacker_Document">
+            <EntityTypeMapping TypeName="LEARNINGModel.Hacker_Document">
+              <MappingFragment StoreEntitySet="Hacker_Document">
+                <ScalarProperty Name="Document_Name" ColumnName="Document Name" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="Document_ID" ColumnName="Document_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
